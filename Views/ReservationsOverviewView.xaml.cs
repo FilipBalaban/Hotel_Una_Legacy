@@ -22,7 +22,7 @@ namespace Hotel_Una_Legacy.Views
     {
         public ReservationsOverviewView()
         {
-            //InitializeComponent();
+            InitializeComponent();
         }
     }
 }
