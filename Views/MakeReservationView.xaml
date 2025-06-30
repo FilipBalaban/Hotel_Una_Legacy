@@ -1,0 +1,141 @@
+﻿<UserControl
+    x:Class="Hotel_Una_Legacy.Views.MakeReservationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hotel_Una_Legacy.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <!--  Title  -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Foreground="{StaticResource PrimaryColorBrush}"
+                Style="{StaticResource Heading}"
+                Text="Napravi " />
+            <TextBlock
+                Grid.Column="1"
+                Style="{StaticResource Heading}"
+                Text="Rezervaciju" />
+        </Grid>
+
+        <!--  RoomNum  -->
+        <Grid Grid.Row="1" Margin="0,40,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Broj sobe:" />
+            <TextBox
+                Grid.Row="2"
+                Width="120"
+                HorizontalAlignment="Left"
+                Text="{Binding RoomNum, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <!--  First & Last Name  -->
+        <Grid Grid.Row="2" Margin="0,24,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Ime:" />
+            <TextBox
+                Grid.Row="2"
+                Width="120"
+                Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Grid.Column="2" Text="Prezime:" />
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="2"
+                Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <!--  CheckIn & CheckOut  -->
+        <Grid Grid.Row="3" Margin="0,24,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="auto" SharedSizeGroup="Column" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Check in:" />
+            <DatePicker
+                Grid.Row="2"
+                Width="120"
+                HorizontalAlignment="Left"
+                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
+
+            <TextBlock Grid.Column="2" Text="Check out:" />
+            <DatePicker
+                Grid.Row="2"
+                Grid.Column="2"
+                Width="120"
+                HorizontalAlignment="Left"
+                SelectedDate="{Binding EndDate, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <!--  NumberOfGuests  -->
+        <Grid Grid.Row="4" Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Broj gostiju:" />
+            <TextBox
+                Grid.Row="2"
+                Width="100"
+                HorizontalAlignment="Left"
+                Text="{Binding NumberOfGuests, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <StackPanel
+            Grid.Row="5"
+            Margin="0,20,0,0"
+            Orientation="Horizontal">
+            <Button
+                Margin="0,0,24,0"
+                Command="{Binding ReserveCommand}"
+                Content="Rezerviši"
+                Style="{StaticResource PrimaryBtn}" />
+            <Button
+                Command="{Binding CancelCommand}"
+                Content="Odustani"
+                Style="{StaticResource SecondaryBtn}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

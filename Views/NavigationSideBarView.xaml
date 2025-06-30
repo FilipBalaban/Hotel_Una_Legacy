@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="Hotel_Una_Legacy.Views.NavigationSideBarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hotel_Una_Legacy.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel Background="{StaticResource SecondaryColorBrush}">
+            <RadioButton
+                Margin="0,80,0,0"
+                Command="{Binding ReservationOverviewCommand}"
+                Content="Pregled rezervacija"
+                IsChecked="{Binding ReservationOverviewBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource NavButton}" />
+            <RadioButton
+                Command="{Binding MakeReservationCommand}"
+                IsChecked="{Binding MakeReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Content="Dodaj rezervaciju"
+                Style="{StaticResource NavButton}" />
+            <RadioButton
+                IsChecked="{Binding RemoveReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding RemoveReservationCommand}"
+                Content="Ukloni rezervaciju"
+                Style="{StaticResource NavButton}" />
+            <RadioButton
+                IsChecked="{Binding UpdateReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding UpdateReservationCommand}"
+                Content="Ažuriraj rezervaciju"
+                Style="{StaticResource NavButton}" />
+            <RadioButton
+                IsChecked="{Binding CalendarBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding CalendarCommand}"
+                Content="Kalendar"
+                Style="{StaticResource NavButton}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

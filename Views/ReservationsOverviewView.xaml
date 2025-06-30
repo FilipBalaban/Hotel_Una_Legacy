@@ -1,0 +1,91 @@
+﻿<UserControl
+    x:Class="Hotel_Una_Legacy_Legacy_Legacy_Legacy.Views.ReservationsOverviewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Hotel_Una_Legacy.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            HorizontalAlignment="Center"
+            Style="{StaticResource Heading}"
+            Text="Pregled Rezervacija" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,48,0,0"
+            Orientation="Horizontal">
+            <TextBlock Text="Sortiraj:" VerticalAlignment="Center"/>
+            <ComboBox
+                MinWidth="140"
+                Height="30"
+                Margin="8,0,24,0"
+                VerticalContentAlignment="Center"
+                IsReadOnly="True"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding SortingPropertyItems}"
+                SelectedValue="{Binding SelectedSortingProperty, Mode=TwoWay}"
+                SelectedValuePath="Value"
+                Style="{StaticResource RoundComboBox}" />
+            <ComboBox
+                MinWidth="140"
+                Text="Sortiraj po:"
+                Margin="0,0,24,0"
+                IsReadOnly="True"
+                DisplayMemberPath="Name"
+                ItemsSource="{Binding SortingOrderItems}"
+                SelectedValue="{Binding SelectedSortingOrder, Mode=TwoWay}"
+                SelectedValuePath="Value"
+                Style="{StaticResource RoundComboBox}" />
+        </StackPanel>
+        <ListView
+            Grid.Row="2"
+            Margin="0,24,0,0"
+            FontFamily="pack://application:,,,/Hotel_Una;component/Resources/#Poppins Regular"
+            ItemsSource="{Binding Reservations}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="80"
+                        DisplayMemberBinding="{Binding ID}"
+                        Header="ID" />
+                    <GridViewColumn
+                        Width="80"
+                        DisplayMemberBinding="{Binding RoomNum}"
+                        Header="Broj sobe" />
+                    <GridViewColumn
+                        Width="80"
+                        DisplayMemberBinding="{Binding FirstName}"
+                        Header="Ime" />
+                    <GridViewColumn
+                        Width="80"
+                        DisplayMemberBinding="{Binding LastName}"
+                        Header="Prezime" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding ReservationDate}"
+                        Header="Datum rezervacije" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding StartDate}"
+                        Header="Check in" />
+                    <GridViewColumn
+                        Width="150"
+                        DisplayMemberBinding="{Binding EndDate}"
+                        Header="Check out" />
+                    <GridViewColumn
+                        Width="80"
+                        DisplayMemberBinding="{Binding NumberOfGuests}"
+                        Header="Broj gostiju" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

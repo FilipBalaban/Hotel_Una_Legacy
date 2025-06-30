@@ -1,0 +1,139 @@
+﻿<UserControl
+    x:Class="Hotel_Una_Legacy.Views.CalendarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:Hotel_Una_Legacy.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            HorizontalAlignment="Center"
+            Style="{StaticResource Heading}"
+            Text="Kalendar Rezervacija" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,12,0,0"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button Background="Transparent" Command="{Binding LastMonthCommand}">
+                <fa:ImageAwesome Width="10" Icon="ChevronLeft" />
+            </Button>
+            <TextBlock
+                Margin="8,0,8,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Foreground="{StaticResource DarkColorBrush}"
+                Text="{Binding CurrentMonth, Mode=OneWay}" />
+            <Button Background="Transparent" Command="{Binding NextMonthCommand}">
+                <fa:ImageAwesome Width="10" Icon="ChevronRight" />
+            </Button>
+        </StackPanel>
+        <StackPanel
+            Grid.Row="3"
+            Margin="0,20,0,0"
+            Orientation="Horizontal">
+            <TextBlock
+                Margin="0,0,8,0"
+                VerticalAlignment="Center"
+                Text="Soba:" />
+            <ComboBox
+                IsReadOnly="True"
+                Height="30"
+                MinWidth="140"
+                ItemsSource="{Binding RoomNumbers}"
+                SelectedValue="{Binding SelectedRoomNum}"
+                Style="{StaticResource RoundComboBox}" />
+        </StackPanel>
+        <ListView
+            Grid.Row="4"
+            Margin="0,24,0,0"
+            ItemsSource="{Binding Weeks}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="80" Header="Nedelja">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Sunday.FontWeight}"
+                                    Foreground="{Binding Sunday.ForegroundColor}"
+                                    Text="{Binding Sunday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Ponedeljak">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Monday.FontWeight}"
+                                    Foreground="{Binding Monday.ForegroundColor}"
+                                    Text="{Binding Monday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Utorak">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Tuesday.FontWeight}"
+                                    Foreground="{Binding Tuesday.ForegroundColor}"
+                                    Text="{Binding Tuesday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Srijeda">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Wednesday.FontWeight}"
+                                    Foreground="{Binding Wednesday.ForegroundColor}"
+                                    Text="{Binding Wednesday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Četvrtak">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Thursday.FontWeight}"
+                                    Foreground="{Binding Thursday.ForegroundColor}"
+                                    Text="{Binding Thursday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Petak">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Friday.FontWeight}"
+                                    Foreground="{Binding Friday.ForegroundColor}"
+                                    Text="{Binding Friday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="80" Header="Subota">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    FontWeight="{Binding Saturday.FontWeight}"
+                                    Foreground="{Binding Saturday.ForegroundColor}"
+                                    Text="{Binding Saturday.Date}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>
