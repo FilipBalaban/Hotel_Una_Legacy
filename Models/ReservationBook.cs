@@ -30,11 +30,6 @@ namespace Hotel_Una_Legacy.Models
         }
         public async Task RemoveReservation(Reservation reservation)
         {
-            IEnumerable<Reservation> reservations = await _databaseReservationManager.GetReservations();
-            if (!reservations.Contains(reservation))
-            {
-                throw new NonExistentReservationException(reservation);
-            }
             await _databaseReservationManager.RemoveReservation (reservation);
         }
         public async Task UpdateReservation(Reservation newReservation)

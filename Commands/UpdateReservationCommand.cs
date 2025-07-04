@@ -67,6 +67,9 @@ namespace Hotel_Una_Legacy.Commands
             catch (InsufficientRoomCapacityException ex)
             {
                 MessageBox.Show("Kapacitet sobe ne podržava ovaj broj gostiju", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

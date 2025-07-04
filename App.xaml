@@ -42,6 +42,7 @@
             TargetType="Button">
             <Setter Property="Background" Value="#0029B7" />
             <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="./Resources/#Poppins Bold" />
             <!--<Setter Property="FontFamily" Value="pack://application:,,,/Hotel_Una;component/Resources/#Poppins Bold" />-->
         </Style>
         <!--  SecondaryButton  -->
@@ -119,7 +120,7 @@
         <Style x:Key="Heading" TargetType="TextBlock">
             <Setter Property="FontSize" Value="24" />
             <Setter Property="FontWeight" Value="Bold" />
-            <!--<Setter Property="FontFamily" Value="pack://application:,,,/Hotel_Una;component/Resources/#Poppins Bold" />-->
+            <Setter Property="FontFamily" Value="./Resources/#Poppins Bold" />
         </Style>
         <!--  TextBox  -->
         <Style TargetType="TextBox">

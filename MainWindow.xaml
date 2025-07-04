@@ -9,10 +9,12 @@
     xmlns:views="clr-namespace:Hotel_Una_Legacy.Views"
     xmlns:vms="clr-namespace:Hotel_Una_Legacy.ViewModels"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="1100"
+    Height="500"
+    MinWidth="1100"
+    FontFamily="../Resources/#Poppins Regular"
     mc:Ignorable="d">
-    
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
             <views:MakeReservationView />

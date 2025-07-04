@@ -13,8 +13,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <TextBlock
+            Grid.Row="0"
             HorizontalAlignment="Center"
             Style="{StaticResource Heading}"
             Text="Pregled Rezervacija" />
@@ -87,5 +89,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Image
+            Grid.Row="3"
+            Width="150"
+            Margin="0,24,0,0"
+            Source="../Resources/logo.png" />
     </Grid>
 </UserControl>
