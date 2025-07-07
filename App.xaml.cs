@@ -1,7 +1,10 @@
-﻿using Hotel_Una_Legacy.Models;
+﻿using Hotel_Una_Legacy.DatabaseContext;
+using Hotel_Una_Legacy.DTOs;
+using Hotel_Una_Legacy.Models;
 using Hotel_Una_Legacy.Services.ReservationManagers;
 using Hotel_Una_Legacy.Stores;
 using Hotel_Una_Legacy.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,9 +25,14 @@ namespace Hotel_Una_Legacy
         private readonly NavigationSideBarViewModel _navigationSideBarViewModel;
         private readonly string _connectionString = ConfigurationManager.ConnectionStrings["Hotel_Una_Legacy.Properties.Settings.HotelUnaTestDBConnectionString"].ConnectionString;
         private readonly DatabaseReservationManager _databaseReservationManager;
+        private readonly HotelDbContextFactory _hotelDbContextFactory;
+        private const string CONNECTION_STRING = "Data Source=HotelUna.db";
         public App()
         {
-            _databaseReservationManager = new DatabaseReservationManager(_connectionString);
+            _hotelDbContextFactory = new HotelDbContextFactory(CONNECTION_STRING);
+            _databaseReservationManager = new DatabaseReservationManager(_hotelDbContextFactory);
+
+
             _hotel = new Hotel("Hotel Una", _databaseReservationManager);
             _navigationStore = new NavigationStore();
             _navigationSideBarViewModel = new NavigationSideBarViewModel(_navigationStore, _hotel);
@@ -32,6 +40,11 @@ namespace Hotel_Una_Legacy
         }
         protected override void OnStartup(StartupEventArgs e)
         {
+            using (HotelDbContext dbContext = _hotelDbContextFactory.CreateDbContext())
+            {
+                dbContext.Database.Migrate();
+            }
+
             var mainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_hotel, _navigationStore)
