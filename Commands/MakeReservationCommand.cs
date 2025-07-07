@@ -26,7 +26,11 @@ namespace Hotel_Una_Legacy.Commands
         }
         public override bool CanExecute(object parameter)
         {
-            return _makeReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_makeReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_makeReservationViewModel.LastName)) && _makeReservationViewModel.NumberOfGuests > 0 && _makeReservationViewModel.StartDate < _makeReservationViewModel.EndDate;
+            if(_makeReservationViewModel.FirstName == null || _makeReservationViewModel.LastName == null)
+            {
+                return false;
+            }
+            return _makeReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_makeReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_makeReservationViewModel.LastName)) && _makeReservationViewModel.FirstName.Length <= 50 && _makeReservationViewModel.LastName.Length <= 50 && _makeReservationViewModel.NumberOfGuests > 0 && _makeReservationViewModel.StartDate < _makeReservationViewModel.EndDate;
         }
         public override async Task ExecuteAsync(object parameter)
         {
