@@ -18,23 +18,23 @@
                 Style="{StaticResource NavButton}" />
             <RadioButton
                 Command="{Binding MakeReservationCommand}"
-                IsChecked="{Binding MakeReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Content="Dodaj rezervaciju"
+                IsChecked="{Binding MakeReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource NavButton}" />
             <RadioButton
-                IsChecked="{Binding RemoveReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Command="{Binding RemoveReservationCommand}"
                 Content="Ukloni rezervaciju"
+                IsChecked="{Binding RemoveReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource NavButton}" />
             <RadioButton
-                IsChecked="{Binding UpdateReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Command="{Binding UpdateReservationCommand}"
                 Content="Ažuriraj rezervaciju"
+                IsChecked="{Binding UpdateReservationBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource NavButton}" />
             <RadioButton
-                IsChecked="{Binding CalendarBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Command="{Binding CalendarCommand}"
                 Content="Kalendar"
+                IsChecked="{Binding CalendarBtnChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Style="{StaticResource NavButton}" />
         </StackPanel>
     </Grid>

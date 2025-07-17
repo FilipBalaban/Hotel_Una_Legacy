@@ -41,11 +41,15 @@ namespace Hotel_Una_Legacy.Commands
 
         public override bool CanExecute(object parameter)
         {
-            return _updateReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_updateReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_updateReservationViewModel.LastName)) && _updateReservationViewModel.NumberOfGuests > 0;
+            if (_updateReservationViewModel.FirstName == null || _updateReservationViewModel.LastName == null)
+            {
+                return false;
+            }
+            return _updateReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_updateReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_updateReservationViewModel.LastName)) && _updateReservationViewModel.NumberOfGuests > 0 && _updateReservationViewModel.StartDate < _updateReservationViewModel.EndDate;
         }
         public override async Task ExecuteAsync(object parameter)
         {
-            Reservation reservation = new Reservation(_updateReservationViewModel.ReservationID, _updateReservationViewModel.RoomNum, _updateReservationViewModel.FirstName, _updateReservationViewModel.LastName, _updateReservationViewModel.StartDate, _updateReservationViewModel.EndDate, _updateReservationViewModel.NumberOfGuests);
+            Reservation reservation = new Reservation(_updateReservationViewModel.ReservationID, _updateReservationViewModel.RoomNum, _updateReservationViewModel.FirstName, _updateReservationViewModel.LastName, _updateReservationViewModel.StartDate, _updateReservationViewModel.EndDate, _updateReservationViewModel.NumberOfGuests, _updateReservationViewModel.Comment);
             try
             {
                 await _hotel.UpdateReservation(reservation);
@@ -58,7 +62,7 @@ namespace Hotel_Una_Legacy.Commands
             }
             catch (ReservationConflictsException ex)
             {
-                MessageBox.Show("Soba je zauzeta tokom ovog datuma", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Soba je zauzeta tokom ovog perioda", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (NonExistentRoomException ex)
             {

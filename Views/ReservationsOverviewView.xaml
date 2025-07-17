@@ -6,13 +6,13 @@
     xmlns:local="clr-namespace:Hotel_Una_Legacy.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="1000"
     mc:Ignorable="d">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <TextBlock
@@ -50,8 +50,16 @@
         <ListView
             Grid.Row="2"
             Margin="0,24,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             FontFamily="pack://application:,,,/Hotel_Una;component/Resources/#Poppins Regular"
-            ItemsSource="{Binding Reservations}">
+            ItemsSource="{Binding Reservations}"
+            ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="80" />
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -86,9 +94,19 @@
                         Width="80"
                         DisplayMemberBinding="{Binding NumberOfGuests}"
                         Header="Broj gostiju" />
+                    <GridViewColumn Width="150" Header="Komentar">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ScrollViewer Height="70" VerticalScrollBarVisibility="Auto">
+                                    <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                                </ScrollViewer>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
+
         <Image
             Grid.Row="3"
             Width="150"

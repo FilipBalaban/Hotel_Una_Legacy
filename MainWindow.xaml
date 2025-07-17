@@ -9,9 +9,9 @@
     xmlns:views="clr-namespace:Hotel_Una_Legacy.Views"
     xmlns:vms="clr-namespace:Hotel_Una_Legacy.ViewModels"
     Title="MainWindow"
-    Width="1100"
-    Height="500"
-    MinWidth="1100"
+    Width="1250"
+    Height="650"
+    MinWidth="1250"
     FontFamily="../Resources/#Poppins Regular"
     mc:Ignorable="d">
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Media3D;
 
 namespace Hotel_Una_Legacy.ViewModels
 {
@@ -24,6 +26,7 @@ namespace Hotel_Una_Legacy.ViewModels
         public DateTime StartDate => _reservation.StartDate;
         public DateTime EndDate => _reservation.EndDate;
         public int NumberOfGuests => _reservation.NumberOfGuests;
+        public string Comment => _reservation.Comment;
 
         public ReservationViewModel(Reservation reservation)
         {
@@ -40,6 +43,8 @@ namespace Hotel_Una_Legacy.ViewModels
             grid.RowDefinitions.Add(new RowDefinition()); // 4
             grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(8) }); // 5
             grid.RowDefinitions.Add(new RowDefinition()); // 6
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(8) }); // 5
+            grid.RowDefinitions.Add(new RowDefinition()); // 8
 
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(8) });
@@ -78,6 +83,11 @@ namespace Hotel_Una_Legacy.ViewModels
             Grid.SetColumn(reservationDateStackPanel, 0);
             grid.Children.Add(reservationDateStackPanel);
 
+            StackPanel commentStackPanel = GetDataStackPanel("Komentar: ", "Comment");
+            Grid.SetRow(commentStackPanel, 8);
+            Grid.SetColumn(commentStackPanel, 0);
+            grid.Children.Add(commentStackPanel);
+
             Border border = new Border
             {
                 Child = grid,
@@ -98,6 +108,8 @@ namespace Hotel_Una_Legacy.ViewModels
             grid.RowDefinitions.Add(new RowDefinition()); // 4
             grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(8) }); // 5
             grid.RowDefinitions.Add(new RowDefinition()); // 6
+            grid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(8) }); // 5
+            grid.RowDefinitions.Add(new RowDefinition()); // 8
 
             grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(8) });
@@ -131,6 +143,13 @@ namespace Hotel_Una_Legacy.ViewModels
             Grid.SetColumn(numberOfGuestsStackPanel, 0);
             grid.Children.Add(numberOfGuestsStackPanel);
 
+            StackPanel commentStackPanel = GetInputStackPanel("Komentar: ", "Comment");
+            commentStackPanel.HorizontalAlignment = HorizontalAlignment.Stretch;
+            Grid.SetRow(commentStackPanel, 8);
+            Grid.SetColumn(commentStackPanel, 0);
+            Grid.SetColumnSpan(commentStackPanel, 2);
+            grid.Children.Add(commentStackPanel);
+
             Border border = new Border()
             {
                 Child = grid,
@@ -141,6 +160,7 @@ namespace Hotel_Una_Legacy.ViewModels
             };
             return border;
         }
+        // Used for UpdateReservationView
         private StackPanel GetInputStackPanel(string textBlockValue, string binding, string inputElementType="TextBox")
         {
             StackPanel stackPanel = new StackPanel();
@@ -150,15 +170,22 @@ namespace Hotel_Una_Legacy.ViewModels
                 Foreground = App.Current.Resources["LightColorBrush"] as SolidColorBrush,
                 Margin = new Thickness(0, 0, 0, 8),
             };
+            stackPanel.Children.Add(textBlock);
             if (inputElementType == "TextBox")
             {
-                TextBox textBox = new TextBox()
+                TextBox textBox = new TextBox();
+                textBox.Width = 120;
+                textBox.Height = 30;
+                textBox.BorderThickness = new Thickness(0);
+                textBox.HorizontalAlignment = HorizontalAlignment.Left;
+                if (binding.ToLower() == "comment")
                 {
-                    Width = 150,
-                    Height = 30,
-                    BorderThickness = new Thickness(0),
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                };
+                    textBox.AcceptsReturn = true;
+                    textBox.TextWrapping = TextWrapping.Wrap;
+                    textBox.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+                    textBox.Height = 80;
+                    textBox.Width = 264;
+                }
                 Binding textBoxBinding = new Binding(binding);
                 textBoxBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
                 textBox.SetBinding(TextBox.TextProperty, textBoxBinding);
@@ -171,9 +198,9 @@ namespace Hotel_Una_Legacy.ViewModels
                 stackPanel.Children.Add(datePicker);
             }
 
-            stackPanel.Children.Add(textBlock);
             return stackPanel;
         }
+        // Used For RemoveReservationView
         private StackPanel GetDataStackPanel(string propertyLabel, string propertyValue)
         {
             StackPanel stackPanel = new StackPanel()
@@ -185,13 +212,20 @@ namespace Hotel_Una_Legacy.ViewModels
             {
                 Text = propertyLabel,
                 Foreground = App.Current.Resources["LightColorBrush"] as SolidColorBrush,
+                FontWeight = FontWeights.Bold,
             };
             Binding propertyBinding = new Binding(propertyValue);
             TextBlock propertyValueTB = new TextBlock()
             {
-                FontWeight = FontWeights.Bold,
                 Foreground = App.Current.Resources["LightColorBrush"] as SolidColorBrush,
+                Width = 120,
+                HorizontalAlignment = HorizontalAlignment.Left,
             };
+            if(propertyValue == "Comment")
+            {
+                propertyValueTB.Width = 264;
+                propertyValueTB.TextWrapping = TextWrapping.WrapWithOverflow;
+            }
             propertyValueTB.SetBinding(TextBlock.TextProperty, propertyBinding);
 
             stackPanel.Children.Add(propertyLabelTB);

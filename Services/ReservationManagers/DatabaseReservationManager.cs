@@ -54,7 +54,7 @@ namespace Hotel_Una_Legacy.Services.ReservationManagers
         }
         private Reservation ToReservation(ReservationDTO dto)
         {
-            return new Reservation(dto.ID, dto.RoomNum, dto.FirstName, dto.LastName, dto.StartDate, dto.EndDate, dto.NumberOfGuests);
+            return new Reservation(dto.ID, dto.RoomNum, dto.FirstName, dto.LastName, dto.StartDate, dto.EndDate, dto.NumberOfGuests, dto.Comment);
         }
         private ReservationDTO ToReservationDTO(Reservation reservation, int id = 0)
         {
@@ -69,6 +69,7 @@ namespace Hotel_Una_Legacy.Services.ReservationManagers
                     StartDate = reservation.StartDate,
                     EndDate = reservation.EndDate,
                     NumberOfGuests = reservation.NumberOfGuests,
+                    Comment = reservation.Comment,
                 };
             }
             return new ReservationDTO
@@ -79,6 +80,7 @@ namespace Hotel_Una_Legacy.Services.ReservationManagers
                 StartDate = reservation.StartDate,
                 EndDate = reservation.EndDate,
                 NumberOfGuests = reservation.NumberOfGuests,
+                Comment = reservation.Comment,
             };
         }
     }

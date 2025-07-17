@@ -19,6 +19,7 @@ namespace Hotel_Una_Legacy.ViewModels
         private DateTime _startDate;
         private DateTime _endDate;
         private int _numberOfGuests;
+        private string _comment;
 
         public int RoomNum
         {
@@ -72,6 +73,15 @@ namespace Hotel_Una_Legacy.ViewModels
             {
                 _numberOfGuests = value;
                 OnPropertyChanged(nameof(NumberOfGuests));
+            }
+        }
+        public string Comment
+        {
+            get => _comment;
+            set
+            {
+                _comment = value;
+                OnPropertyChanged(nameof(Comment));
             }
         }
         public ICommand ReserveCommand { get; }

@@ -87,6 +87,7 @@ namespace Hotel_Una_Legacy.Commands
                     _updateReservationViewModel.StartDate = reservation.StartDate;
                     _updateReservationViewModel.EndDate = reservation.EndDate;
                     _updateReservationViewModel.NumberOfGuests = reservation.NumberOfGuests;
+                    _updateReservationViewModel.Comment = reservation.Comment;
 
                     _updateReservationViewModel.ReservationInputContentControl = new ReservationViewModel(reservation).GetReservationInputContentControl();
                 }

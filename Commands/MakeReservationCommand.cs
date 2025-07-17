@@ -30,11 +30,11 @@ namespace Hotel_Una_Legacy.Commands
             {
                 return false;
             }
-            return _makeReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_makeReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_makeReservationViewModel.LastName)) && _makeReservationViewModel.FirstName.Length <= 50 && _makeReservationViewModel.LastName.Length <= 50 && _makeReservationViewModel.NumberOfGuests > 0 && _makeReservationViewModel.StartDate < _makeReservationViewModel.EndDate;
+            return _makeReservationViewModel.RoomNum > 0 && !(string.IsNullOrEmpty(_makeReservationViewModel.FirstName)) && !(string.IsNullOrEmpty(_makeReservationViewModel.LastName)) && _makeReservationViewModel.NumberOfGuests > 0 && _makeReservationViewModel.StartDate < _makeReservationViewModel.EndDate;
         }
         public override async Task ExecuteAsync(object parameter)
         {
-            Reservation reservation = new Reservation(_makeReservationViewModel.RoomNum, _makeReservationViewModel.FirstName, _makeReservationViewModel.LastName, _makeReservationViewModel.StartDate, _makeReservationViewModel.EndDate, _makeReservationViewModel.NumberOfGuests);
+            Reservation reservation = new Reservation(_makeReservationViewModel.RoomNum, _makeReservationViewModel.FirstName, _makeReservationViewModel.LastName, _makeReservationViewModel.StartDate, _makeReservationViewModel.EndDate, _makeReservationViewModel.NumberOfGuests, _makeReservationViewModel.Comment);
 
             try
             {
@@ -43,7 +43,7 @@ namespace Hotel_Una_Legacy.Commands
                 _navigationService.Navigate();
             } catch (ReservationConflictsException ex)
             {
-                MessageBox.Show("Soba je zauzeta tokom ovog datuma", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Soba je zauzeta tokom ovog perioda", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
             } catch(NonExistentRoomException ex)
             {
                 MessageBox.Show("Soba ne postoji", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);

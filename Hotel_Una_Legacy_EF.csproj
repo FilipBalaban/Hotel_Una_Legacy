@@ -276,6 +276,10 @@
     <Compile Include="Migrations\20250707155530_InitialDbCreation.Designer.cs">
       <DependentUpon>20250707155530_InitialDbCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20250717150921_AddComment.cs" />
+    <Compile Include="Migrations\20250717150921_AddComment.Designer.cs">
+      <DependentUpon>20250717150921_AddComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\HotelDbContextModelSnapshot.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Reservation.cs" />

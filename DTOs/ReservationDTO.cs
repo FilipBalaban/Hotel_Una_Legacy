@@ -20,5 +20,7 @@ namespace Hotel_Una_Legacy.DTOs
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int NumberOfGuests { get; set; }
+        [MaxLength(500)]
+        public string Comment { get; set; }
     }
 }
